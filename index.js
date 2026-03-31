@@ -10,7 +10,11 @@ const swaggerSpec = require('./src/config/swagger');
 app.use(express.json());
 
 // 👇 Swagger en raíz
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.get('/', (req, res) => {
+  res.redirect('/docs');
+});
 
 // ⚠️ Si querés proteger rutas, poné auth DESPUÉS
 app.use(auth);
