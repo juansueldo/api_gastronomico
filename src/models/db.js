@@ -7,14 +7,20 @@ const { Sequelize } = require('sequelize');
   logging: false,
 });
 */
+
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  protocol: 'postgres',
   dialectOptions: {
     ssl: {
       require: true,
       rejectUnauthorized: false
     }
-  }
+  },
+  dialectModule: require('pg'),
+  logging: false
 });
+
+// 🔥 FORZAR IPv4
+require('dns').setDefaultResultOrder('ipv4first');
+
 module.exports = sequelize;
