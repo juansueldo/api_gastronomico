@@ -15,12 +15,12 @@ app.use(express.static('public'));
 
 
 // Swagger solo en desarrollo
-if (process.env.NODE_ENV !== 'production') {
+/*if (process.env.NODE_ENV !== 'production') {
 	app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 	app.get('/', (req, res) => {
 		res.redirect('/docs');
 	});
-}
+}*/
 
 // ⚠️ Si querés proteger rutas, poné auth DESPUÉS
 app.use(auth);
