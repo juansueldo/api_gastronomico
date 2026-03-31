@@ -1,0 +1,22 @@
+// Middleware para autenticación con Bearer Token y custom header
+module.exports = function (req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const customHeader = req.headers['x-custom-header']; // Cambia el nombre según tu necesidad
+
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Token Bearer requerido' });
+  }
+  const token = authHeader.split(' ')[1];
+
+  // Aquí puedes validar el token como prefieras (ejemplo simple):
+  if (token !== process.env.API_TOKEN) {
+    return res.status(403).json({ error: 'Token inválido' });
+  }
+
+  // Validar custom header si es necesario
+  if (!customHeader || customHeader !== process.env.CUSTOM_HEADER_VALUE) {
+    return res.status(400).json({ error: 'Custom header inválido o faltante' });
+  }
+
+  next();
+};
