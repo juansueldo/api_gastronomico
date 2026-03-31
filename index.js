@@ -1,3 +1,7 @@
+// Suprimir warnings de Node.js
+process.removeAllListeners('warning');
+process.on('warning', () => {});
+
 require('dotenv').config();
 const express = require('express');
 const app = express();
