@@ -1,13 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+
 const { syncModels } = require('./src/models');
 const auth = require('./src/middleware/auth');
 
-
+// Middleware
 app.use(express.json());
-// Middleware de autenticación global
 app.use(auth);
 
 // Rutas
@@ -22,11 +21,7 @@ app.get('/', (req, res) => {
 	res.send('API Gastronómico funcionando');
 });
 
-// Sincronizar modelos y levantar servidor
-syncModels().then(() => {
-	app.listen(PORT, () => {
-		console.log(`Servidor corriendo en puerto ${PORT}`);
-	});
-}).catch(err => {
-	console.error('Error al sincronizar modelos:', err);
-});
+// ⚠️ NO usar app.listen()
+// ⚠️ NO ejecutar syncModels automáticamente acá
+
+module.exports = app; // 👈 ESTO SOLUCIONA EL ERROR
