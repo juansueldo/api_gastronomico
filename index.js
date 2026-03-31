@@ -29,8 +29,8 @@ app.use(express.static('public'));
 
 
 
-// Swagger solo en desarrollo
-if (process.env.NODE_ENV !== 'production') {
+// Swagger visible en desarrollo o si SWAGGER_ENABLE=true
+if (process.env.NODE_ENV !== 'production' || process.env.SWAGGER_ENABLE === 'true') {
 	app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 	app.get('/', (req, res) => {
 		res.redirect('/docs');
