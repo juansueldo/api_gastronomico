@@ -7,27 +7,31 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
 
 
+
+const path = require('path');
 // Middleware
 app.use(express.json());
-// Servir archivos estáticos de /public antes de auth
+
+// Servir docs.html y swagger.json explícitamente antes de auth
 app.get('/docs.html', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public', 'docs.html'));
+	res.sendFile(path.join(process.cwd(), 'public', 'docs.html'));
 });
 app.get('/swagger.json', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public', 'swagger.json'));
+	res.sendFile(path.join(process.cwd(), 'public', 'swagger.json'));
 });
 
+// Servir archivos estáticos de /public antes de auth (por si hay otros assets)
 app.use(express.static('public'));
 
 
 
 // Swagger solo en desarrollo
-/*if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
 	app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 	app.get('/', (req, res) => {
 		res.redirect('/docs');
 	});
-}*/
+}
 
 // ⚠️ Si querés proteger rutas, poné auth DESPUÉS
 app.use(auth);
