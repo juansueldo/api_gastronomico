@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Gastronómico",
+    "version": "1.0.0",
+    "description": "Documentación de la API"
+  },
+  "servers": [
+    { "url": "https://api-gastronomico.vercel.app" }
+  ],
+  "paths": {}
+}
