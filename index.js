@@ -6,8 +6,11 @@ const auth = require('./src/middleware/auth');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
 
+
 // Middleware
 app.use(express.json());
+// Servir archivos estáticos de /public antes de auth
+app.use(express.static('public'));
 
 
 
