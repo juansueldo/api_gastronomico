@@ -10,6 +10,13 @@ const swaggerSpec = require('./src/config/swagger');
 // Middleware
 app.use(express.json());
 // Servir archivos estáticos de /public antes de auth
+app.get('/docs.html', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'docs.html'));
+});
+app.get('/swagger.json', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'swagger.json'));
+});
+
 app.use(express.static('public'));
 
 
