@@ -1,7 +1,1 @@
-{
-  "functions": {
-    "*.js": {
-      "includeFiles": "node_modules/pg/**"
-    }
-  }
-}
+{}
