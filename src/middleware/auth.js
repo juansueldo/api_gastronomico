@@ -1,5 +1,13 @@
 // Middleware para autenticación con Bearer Token y custom header
 module.exports = function (req, res, next) {
+  // Permitir acceso libre a la documentación y archivos estáticos de Swagger
+  if (
+    req.path === '/docs.html' ||
+    req.path === '/swagger.json' ||
+    req.path.startsWith('/swagger-ui')
+  ) {
+    return next();
+  }
   const authHeader = req.headers['authorization'];
   const customHeader = req.headers['x-custom-header']; // Cambia el nombre según tu necesidad
 
