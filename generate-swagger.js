@@ -34,5 +34,5 @@ const swaggerOptions = {
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
-fs.writeFileSync('./swagger.json', JSON.stringify(swaggerSpec, null, 2));
+fs.writeFileSync('./public/swagger.json', JSON.stringify(swaggerSpec, null, 2));
 console.log('swagger.json generado');
