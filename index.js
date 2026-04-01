@@ -37,7 +37,7 @@ if (process.env.NODE_ENV !== 'production' || process.env.SWAGGER_ENABLE === 'tru
 	});
 }
 
-// ⚠️ Si querés proteger rutas, poné auth DESPUÉS
+// Si querés proteger rutas, poné auth DESPUÉS
 app.use(auth);
 
 // Rutas
